@@ -1,12 +1,29 @@
-import { Section, Container, Header, Text } from 'components';
+import {
+  Section,
+  Container,
+  Header,
+  Text,
+  Form,
+  TodoList,
+  Filter,
+} from 'components';
+import { useSelector } from 'react-redux';
+import { selecTodos } from 'reduxTodo/todosSlice';
 
 export const App = () => {
+  const todos = useSelector(selecTodos);
   return (
     <>
       <Header />
       <Section>
         <Container>
-          <Text textAlign="center">Create your first todo😉</Text>
+          <Form />
+          <Filter />
+          {todos.length > 0 ? (
+            <TodoList />
+          ) : (
+            <Text textAlign="center">Create your first todo😉</Text>
+          )}
         </Container>
       </Section>
     </>
