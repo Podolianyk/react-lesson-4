@@ -6,18 +6,21 @@ import {
   Form,
   TodoList,
   Filter,
+  EditForm,
 } from 'components';
 import { useSelector } from 'react-redux';
-import { selecTodos } from 'reduxTodo/todosSlice';
+import { selecTodos, selectCurrentToDo } from 'reduxTodo/todosSlice';
 
 export const App = () => {
   const todos = useSelector(selecTodos);
+  const currentToDo = useSelector(selectCurrentToDo);
   return (
     <>
       <Header />
       <Section>
         <Container>
-          <Form />
+          {!currentToDo ? <Form /> : <EditForm />}
+
           <Filter />
           {todos.length > 0 ? (
             <TodoList />
