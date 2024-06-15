@@ -9,11 +9,13 @@ import {
   EditForm,
 } from 'components';
 import { useSelector } from 'react-redux';
-import { selecTodos, selectCurrentToDo } from 'reduxTodo/todosSlice';
+import { useGetTodosQuery } from 'reduxTodo/todosApi';
+import { selectCurrentToDo } from 'reduxTodo/todosSlice';
 
 export const App = () => {
-  const todos = useSelector(selecTodos);
   const currentToDo = useSelector(selectCurrentToDo);
+  const { data: todos = [] } = useGetTodosQuery();
+
   return (
     <>
       <Header />

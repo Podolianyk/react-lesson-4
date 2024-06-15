@@ -3,14 +3,16 @@ import { MdOutlineCancel } from 'react-icons/md';
 
 import style from './EditForm.module.css';
 import {
-  editToDo,
+  // editToDo,
   selectCurrentToDo,
   setCurrentToDo,
 } from 'reduxTodo/todosSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEditTodoMutation } from 'reduxTodo/todosApi';
 
 export const EditForm = () => {
   const dispatch = useDispatch();
+  const [editToDo] = useEditTodoMutation();
   const currentToDo = useSelector(selectCurrentToDo);
 
   const handleCancel = () => {
@@ -21,7 +23,7 @@ export const EditForm = () => {
     e.preventDefault();
     const newValue = e.target.text.value;
     const updatedToDo = { ...currentToDo, text: newValue };
-    dispatch(editToDo(updatedToDo));
+    editToDo(updatedToDo);
   };
 
   return (
